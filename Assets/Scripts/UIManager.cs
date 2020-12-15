@@ -18,7 +18,7 @@ public class UIManager : MonoBehaviour
         }
         
     }
-    public Text InteractionButton;
+    public Text InteractionText;
     public Text PlayerHealthText;
     public Text BulletAmountText;
 

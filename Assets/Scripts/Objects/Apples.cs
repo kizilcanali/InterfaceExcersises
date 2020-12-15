@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Apples : MonoBehaviour, IEatable, IInteractable, IInteractWithKey
+public class Apples : MonoBehaviour, IEatable, IInteractable
 {
 
     int HealthValueOfApple = 5;
@@ -18,18 +18,15 @@ public class Apples : MonoBehaviour, IEatable, IInteractable, IInteractWithKey
         UIManager.Instance.UpdateHealthAmount(p.Health);
     }
 
-    public void InteractWithE()
-    {
-      
-    }
     
     public void InteractItem()
     {
        
             AddHealth();
         
-        
     }
+
+
     
 } 
 

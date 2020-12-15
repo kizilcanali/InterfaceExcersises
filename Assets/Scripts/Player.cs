@@ -29,8 +29,11 @@ public class Player : MonoBehaviour
     {
         var Interactable = other.GetComponent<IInteractable>();
         if (Interactable == null) return;
-        Interactable.InteractItem();
+
+            Interactable.InteractItem();
+        
+        
             
     }
-    
+
 }
