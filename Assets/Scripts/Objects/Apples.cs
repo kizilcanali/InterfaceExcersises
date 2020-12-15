@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Apples : MonoBehaviour, IEatable, IInteractable, IInteractWithKey
+public class Apples : MonoBehaviour, IEatable, IInteractable
 {
 
     int HealthValueOfApple = 5;
     Player p;
 
+    public string TextInfo { get; set; }
+ 
+
     private void Awake()
     {
 
         p = FindObjectOfType<Player>().GetComponent<Player>();
-
+        TextInfo = "YE";
     }
 
     public void AddHealth()
@@ -28,14 +31,6 @@ public class Apples : MonoBehaviour, IEatable, IInteractable, IInteractWithKey
     {
 
         AddHealth();
-
-    }
-
-    public void InteractWithE()
-    {
-
-        UIManager.Instance.InteractionText.text = "YE";
-        UIManager.Instance.InteractionText.gameObject.SetActive(true);
 
     }
     

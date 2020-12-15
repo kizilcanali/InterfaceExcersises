@@ -6,4 +6,5 @@ public interface IInteractable
 {
     void InteractItem();
 
+    string TextInfo { get; set; }
 }

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullets : MonoBehaviour, ICollectable , IInteractable, IInteractWithKey
+public class Bullets : MonoBehaviour, ICollectable , IInteractable
 {
     Player p;
     int BulletValue = 1;
+    public string TextInfo { get; set; }
     private void Awake()
     {
 
         p = FindObjectOfType<Player>().GetComponent<Player>();
-
+        TextInfo = "TOPLA";
     }
     public void CollectItem()
     {
@@ -28,11 +29,4 @@ public class Bullets : MonoBehaviour, ICollectable , IInteractable, IInteractWit
 
     }
 
-    public void InteractWithE()
-    {
-
-        UIManager.Instance.InteractionText.text = "TOPLA";
-        UIManager.Instance.InteractionText.gameObject.SetActive(true);
-
-    }
 }

@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IUsable, IInteractable, IInteractWithKey
+public class Door : MonoBehaviour, IUsable, IInteractable
 {
     
     HingeJoint Joint;
     JointLimits MinAngle;
     Quaternion rotationValues;
+    public string TextInfo { get; set; }
+
+    float Speed = 0.5f;
     
-    float Speed = 0.5f; 
     private void Awake()
     {
 
         Joint = this.GetComponent<HingeJoint>();
         MinAngle = Joint.limits;
         rotationValues = transform.rotation;
+        TextInfo = "AÇ";
        
     }
   
@@ -25,7 +28,8 @@ public class Door : MonoBehaviour, IUsable, IInteractable, IInteractWithKey
         MinAngle.min = -90;
         Joint.limits = MinAngle;
         
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotationValues, Speed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotationValues, Speed);
+
 
     }
 
@@ -36,11 +40,4 @@ public class Door : MonoBehaviour, IUsable, IInteractable, IInteractWithKey
         
     }
 
-    public void InteractWithE()
-    {
-
-        UIManager.Instance.InteractionText.text = "AÇ";
-        UIManager.Instance.InteractionText.gameObject.SetActive(true);
-
-    }
 }
