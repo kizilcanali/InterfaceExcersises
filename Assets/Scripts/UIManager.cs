@@ -25,18 +25,24 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+
         _instance = this;
+
     }
   
 
     public void UpdateHealthAmount(int Health)
     {
+
         PlayerHealthText.text = "Health:" + " " + Health;
+
     }
 
     public void UpdateBulletAmount (int AddedBullet)
     {
+
         BulletAmountText.text = "Bullet:" + " " + AddedBullet;
+
     }
 
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, IUsable, IInteractable
+public class Door : MonoBehaviour, IUsable, IInteractable, IInteractWithKey
 {
     
     HingeJoint Joint;
@@ -22,7 +22,6 @@ public class Door : MonoBehaviour, IUsable, IInteractable
     public void Interact()
     {
         rotationValues.y = -90;
-        
         MinAngle.min = -90;
         Joint.limits = MinAngle;
         
@@ -32,6 +31,16 @@ public class Door : MonoBehaviour, IUsable, IInteractable
 
     public void InteractItem()
     {
+
         Interact();
+        
+    }
+
+    public void InteractWithE()
+    {
+
+        UIManager.Instance.InteractionText.text = "AÇ";
+        UIManager.Instance.InteractionText.gameObject.SetActive(true);
+
     }
 }

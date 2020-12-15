@@ -18,22 +18,48 @@ public class Player : MonoBehaviour
     void Update()
     {
 
-        float moveA = Input.GetAxis("Horizontal");
-        float moveB = Input.GetAxis("Vertical");
+        rb.velocity = new Vector3(Input.GetAxis("Horizontal") * Speed, 0, Input.GetAxis("Vertical") * Speed);
 
-        rb.velocity = new Vector3(moveA * Speed, 0, moveB * Speed);
-    }
+        ShowInteractionType();
 
+        var NearestObject = FindInteractedObject();
+        if (NearestObject == null) return;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        var Interactable = other.GetComponent<IInteractable>();
-        if (Interactable == null) return;
-
-            Interactable.InteractItem();
-        
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             
+            var Interactable = NearestObject.GetComponent<IInteractable>();
+            if (Interactable == null) return;
+            Interactable.InteractItem();
+            
+        }
     }
 
+    private GameObject FindInteractedObject()
+    {
+
+        GameObject nearObject = null;
+
+        Vector3 ray = transform.TransformDirection(Vector3.forward);
+        
+        Debug.DrawRay(transform.position, ray * 5, Color.green);
+        
+        if(Physics.Raycast(transform.position, ray, out var hit, 5))
+        {
+            nearObject = hit.transform.gameObject;
+        }
+        return nearObject;
+    }
+
+    void ShowInteractionType() 
+    {
+
+        var nearObject = FindInteractedObject();
+
+        var text = nearObject.GetComponent<IInteractWithKey>();
+        if (text == null) return;
+
+        text.InteractWithE();
+
+    }
 }
