@@ -55,7 +55,11 @@ public class Player : MonoBehaviour
     {
 
         var nearObject = FindInteractedObject();
-        if (nearObject == null) return;
+        if (nearObject == null) 
+        {
+            UIManager.Instance.InteractionText.gameObject.SetActive(false);
+            return;
+        };
         var text = nearObject.GetComponent<IInteractable>().TextInfo;
 
         UIManager.Instance.InteractionText.text = text;
